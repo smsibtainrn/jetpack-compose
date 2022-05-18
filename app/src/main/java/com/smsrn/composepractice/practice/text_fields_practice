@@ -1,0 +1,54 @@
+
+@Composable
+fun Greeting() {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        var text by remember {
+            mutableStateOf("Type here")
+        }
+        BasicTextField(
+            modifier = Modifier
+                .background(Color.LightGray)
+                .padding(16.dp),
+            value = text,
+            onValueChange = { text = it },
+            /*label = {
+                Text(text = "Title")
+            },
+            leadingIcon = {
+                IconButton(onClick = {
+                    Log.d("Clicked", "Leading Icon")
+                }) {
+                    Icon(imageVector = Icons.Filled.Email, contentDescription = "Email Icon")
+                }
+            },
+            trailingIcon = {
+                IconButton(onClick = {
+                    Log.d("Clicked", "Trailing Icon")
+                }) {
+                    Icon(imageVector = Icons.Filled.Check, contentDescription = "Email Icon")
+                }
+            },*/
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Email,
+                imeAction = ImeAction.Search
+            ),
+            keyboardActions = KeyboardActions(
+                onSearch = {
+                    Log.d("", "ImeAction")
+                }
+            )
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    ComposePracticeTheme {
+        Greeting()
+    }
+}
