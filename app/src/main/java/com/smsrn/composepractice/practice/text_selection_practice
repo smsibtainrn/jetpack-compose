@@ -1,0 +1,23 @@
+
+@Composable
+fun customerText() {
+    SelectionContainer {
+        Column() {
+            Text(text = "Hello World")
+            DisableSelection {
+                Text(text = "Hello World")
+            }
+            Text(text = "Hello World")
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    ComposePracticeTheme {
+        Column(modifier = Modifier.fillMaxSize()) {
+
+        }
+    }
+}
