@@ -1,0 +1,42 @@
+@ExperimentalCoilApi
+@ExperimentalMaterialApi
+@Composable
+fun CoilImage() {
+    Box(
+        modifier = Modifier
+            .height(150.dp)
+            .width(150.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        val painter = rememberAsyncImagePainter(
+            model = ImageRequest.Builder(LocalContext.current)
+                .data("https://avatars.githubusercontent.com/u/14994036?v=4")
+                .size(Size.ORIGINAL) // Set the target size to load the image at.
+                .crossfade(1000)
+                .placeholder(R.drawable.ic_google_logo)
+                .error(R.drawable.ic_google_logo)
+                .transformations(
+//                        GrayscaleTransformation(),
+                    CircleCropTransformation(),//COMMENT IF ROUNDED
+//                        BlurTransformation(LocalContext.current),
+                    RoundedCornersTransformation()
+                )
+                .build()
+        )
+
+        val painterState = painter.state
+        Image(painter = painter, contentDescription = "Logo Image")
+        if (painterState is AsyncImagePainter.State.Loading) {
+            CircularProgressIndicator()
+        }
+    }
+}
+
+@ExperimentalMaterialApi
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    ComposePracticeTheme {
+        CoilImage()
+    }
+}
