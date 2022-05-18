@@ -1,0 +1,33 @@
+
+@Composable
+fun Greeting(name: String) {
+    Text(text = "Hello $name!")
+}
+
+@Composable
+fun Greeting() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.TopCenter
+    ) {
+        Box(
+            modifier = Modifier
+                .background(Color.Blue),
+            contentAlignment = Alignment.Center
+        ) {
+            Box(modifier = Modifier
+                .height(50.dp)
+                .width(50.dp)
+                .background(Color.Green))
+            Text(text = "I Love Android!", fontSize = 40.sp)
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    ComposePracticeTheme {
+        Greeting()
+    }
+}
