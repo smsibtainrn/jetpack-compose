@@ -1,0 +1,50 @@
+
+@Composable
+fun ColumnScope.CustomItem(weightFloat: Float, color: Color = MaterialTheme.colors.primary) {
+    Surface(
+        modifier = Modifier
+            .width(50.dp)
+            .weight(weightFloat),
+        color = color
+    ) {}
+}
+
+@Composable
+fun RowScope.CustomItem(weightFloat: Float, color: Color = MaterialTheme.colors.primary) {
+    Surface(
+        modifier = Modifier
+            .width(50.dp)
+            .height(50.dp)
+            .weight(weightFloat),
+        color = color
+    ) {}
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    ComposePracticeTheme {
+        /*Row(
+            modifier = Modifier.height(500.dp),
+            horizontalArrangement = Arrangement.Start,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            CustomItem(weightFloat = 3f, color = MaterialTheme.colors.secondary)
+            CustomItem(weightFloat = 1f)
+        }*/
+        /*Column(modifier = Modifier.fillMaxSize()) {
+            Surface(
+                modifier = Modifier.fillMaxSize(),
+                color = MaterialTheme.colors.secondary
+            ) {
+            }
+        }*/
+        /*Row(modifier = Modifier.fillMaxSize()) {
+            Surface(
+                modifier = Modifier.fillMaxSize(),
+                color = MaterialTheme.colors.primary
+            ) {
+            }
+        }*/
+    }
+}
