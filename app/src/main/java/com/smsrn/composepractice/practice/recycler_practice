@@ -1,0 +1,100 @@
+package com.chetdeva.composepractice
+
+import CustomItem
+import GradientButton
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.*
+import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import coil.annotation.ExperimentalCoilApi
+import com.chetdeva.composepractice.repository.PersonRepository
+import com.chetdeva.composepractice.ui.theme.ComposePracticeTheme
+import com.chetdeva.composepractice.ui.theme.color1
+import com.chetdeva.composepractice.ui.theme.color2
+
+class MainActivity : ComponentActivity() {
+    @ExperimentalFoundationApi
+    @ExperimentalCoilApi
+    @ExperimentalMaterialApi
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            ComposePracticeTheme {
+
+                val sections = listOf("A", "B", "C", "D", "E", "F", "G")
+
+                LazyColumn(
+                    contentPadding = PaddingValues(all = 12.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    sections.forEach { section ->
+                        stickyHeader {
+                            Text(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .background(Color.LightGray)
+                                    .padding(12.dp),
+                                text = "Section $section"
+                            )
+                        }
+                        items(10) {
+                            Text(
+                                modifier = Modifier.padding(12.dp),
+                                text = "item $it from the section $section"
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@ExperimentalCoilApi
+@ExperimentalMaterialApi
+@Composable
+fun Greeting() {
+
+}
+
+@ExperimentalMaterialApi
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    ComposePracticeTheme {
+        Greeting()
+    }
+}
+
+
+/*
+val personRepository = PersonRepository()
+val getAllData = personRepository.getAllData()
+LazyColumn(
+contentPadding = PaddingValues(all = 12.dp),
+verticalArrangement = Arrangement.spacedBy(12.dp)
+) {
+    items(items = getAllData, key = {
+        it.id
+    }) { person ->
+        CustomItem(person = person)
+    }
+}*/
