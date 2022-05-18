@@ -1,0 +1,57 @@
+
+@Composable
+fun CustomTextFirst() {
+    Text(
+        text = stringResource(id = R.string.app_name),
+        modifier = Modifier
+            .background(MaterialTheme.colors.primary)
+            .padding(16.dp)
+            .width(200.dp),
+        color = Color.White,
+        fontSize = MaterialTheme.typography.h6.fontSize,
+        fontStyle = FontStyle.Italic,
+        fontWeight = FontWeight.ExtraBold,
+        textAlign = TextAlign.Center
+    )
+}
+
+@Composable
+fun CustomTextSecond() {
+    Text(
+        buildAnnotatedString {
+            withStyle(style = ParagraphStyle(textAlign = TextAlign.Center)) {
+                withStyle(
+                    style = SpanStyle(
+                        color = MaterialTheme.colors.primary,
+                        fontSize = 30.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                ) {
+                    append("A")
+                }
+                append("B")
+                append("C")
+                append("D")
+            }
+        },
+        modifier = Modifier.width(200.dp)
+    )
+}
+
+@Composable
+fun CustomTextThree() {
+    Text(
+        text = "Hello World".repeat(20), maxLines = 2, overflow = TextOverflow.Ellipsis
+    )
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    ComposePracticeTheme {
+        Column(modifier = Modifier.fillMaxSize()) {
+            CustomTextThird()
+        }
+    }
+}
