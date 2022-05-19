@@ -8,7 +8,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.smsrn.composepractice.model.Person
+import com.smsrn.composepractice.data.Person
 import com.smsrn.composepractice.ui.theme.Typography
 
 @Composable
