@@ -1,29 +1,25 @@
 package com.smsrn.composepractice.ui.main
 
-import CustomItem
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Surface
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.material.Text
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.smsrn.composepractice.ui.theme.ComposePracticeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
-    val mainViewModel by viewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,30 +29,42 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     color = MaterialTheme.colors.background
                 ) {
-
-                    val getAllData by mainViewModel.readAll.collectAsState(initial = emptyList())
-                    LazyColumn(
-                        contentPadding = PaddingValues(all = 12.dp),
-                        verticalArrangement = Arrangement.spacedBy(12.dp)
-                    ) {
-                        items(items = getAllData, key = {
-                            it.id
-                        }) { person ->
-                            CustomItem(person = person)
-                        }
-                    }
+                    MyComposable()
                 }
             }
         }
     }
 }
 
+@Composable
+fun MyComposable() {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        var name by remember { mutableStateOf("") }
+        val maxChar = 10
+        OutlinedTextField(
+            value = name,
+            onValueChange = {
+                if (it.length <= maxChar) {
+                    name = it
+                }
+            },
+            label = { Text(text = "Name") },
+            placeholder = { Text(text = "Enter your name") },
+            maxLines = 1
+        )
+    }
+}
+
+
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     ComposePracticeTheme {
-        Column {
 
-        }
     }
 }
